@@ -1,17 +1,13 @@
 import React from 'react';
-import { Card, CardText } from 'reactstrap';
+import { Card, CardText, CardBody, Button, Col } from 'reactstrap';
 
 const Sightword = ({word}) => {
 	
   	return (
-		<Card
-			body
-			className="my-4"
-			style={{
-			width: '18rem'
-			}}
-		>
-			<CardText>{word}</CardText>
+		<Card>
+			<CardBody>
+				<CardText>{word}</CardText>
+			</CardBody>
 		</Card>
   	)
 }
