@@ -37,3 +37,12 @@
     transform: translateY(0px);
   }
 }
+
+
+.active, .active a {
+	color: white;
+}
+
+.list-group-item a {
+	text-decoration: none;
+}
