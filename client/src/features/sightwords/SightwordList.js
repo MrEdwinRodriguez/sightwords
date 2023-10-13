@@ -1,6 +1,7 @@
 import React, {useRef, useEffect, useState} from 'react';
 import {Container, Col, Row, Button} from 'reactstrap';
 import Sightword from './Sightword';
+import AnimatedWord from './AnimatedWord';
 
 const SightwordList = () => {
 	const [showMic, toggleMic] = useState(true);
@@ -44,7 +45,7 @@ const SightwordList = () => {
 				{wordsFullArray.map((word, idx) => {
 					return (
 						<Col className='m-3 col-sm-4' key={idx}>
-							<Sightword word={word} compare={compare} />
+							<AnimatedWord word={word} compare={compare} />
 						</Col>
 					);
 				})}
