@@ -2,14 +2,17 @@ import React, {useRef, useEffect, useState} from 'react';
 import {Container, Col, Row, Button} from 'reactstrap';
 import Sightword from './Sightword';
 import AnimatedWord from './AnimatedWord';
+import { getAllSightWords, selectSighwordListsById } from './sightwordSlice'
 
 const SightwordList = () => {
 	const [showMic, toggleMic] = useState(true);
 	const [currentWord, updateCurrentWord] = useState(null);
-	const [score, updateScore] = useState(0)
+	const [score, updateScore] = useState(0);
+	console.log(getAllSightWords())
+	// console.log(selectSighwordListsById(0))
 
-	const wordsFullArray = ['it', "black", "red", "into", "in", "white", "brown"];
-	const words = useRef(['it', "black", "red", "into", "in", "white", "brown"]);
+	const wordsFullArray = getAllSightWords();
+	const words = useRef(getAllSightWords());
 
 	const onRead = () => {
 		const randomNumber = Math.floor(Math.random() * words.current.length);
@@ -37,14 +40,14 @@ const SightwordList = () => {
 	};
 
 	return (
-		<Container>
+		<Container className="margin-top-20">
 			<h1>Score</h1>
 			<div>{score}</div>
-			{showMic ? <Button onClick={onRead}><i className="fa fa-microphone" aria-hidden="true"></i></Button> : ""}
-			<Row>
+			{showMic ? <Button onClick={onRead} className="margin-top-20"><i className="fa fa-microphone" aria-hidden="true"></i> New Word</Button> : ""}
+			<Row className="margin-top-20">
 				{wordsFullArray.map((word, idx) => {
 					return (
-						<Col className='m-3 col-sm-4' key={idx}>
+						<Col className='col-sm-3' key={idx}>
 							<AnimatedWord word={word} compare={compare} />
 						</Col>
 					);

@@ -5,6 +5,13 @@ import { useSpring, animated } from 'react-spring';
 const AnimatedWord = ({ word, compare }) => {
     const [toggle, setToggle] = useState(false);
 
+	const handleMouseEnter = (e) => {
+		console.log('do something in the future')
+	};
+	const handleMouseLeave = (e) => {
+		console.log('do something in the future')
+	};
+
     const animatedStyle = useSpring({
         opacity: toggle ? 1 : 0,
         transform: toggle ? 'scale(1,1)' : 'scale(1,0)',
@@ -19,16 +26,16 @@ const AnimatedWord = ({ word, compare }) => {
 		const wordSelected = e.target.getAttribute("value");
 		compare(wordSelected)
 	}
-	console.log('line 22')
     return (
-        <animated.div style={animatedStyle}>
+        <animated.div style={animatedStyle} onMouseEnter={(e) => handleMouseEnter(e)}  onMouseLeave={(e) => handleMouseLeave(e)}>
 			<Card 
 				id={word}
 				style={{
-					height: '100px'
+					height: '75px'
 				}}
+				className="margin-bot-20"
 			>
-				<CardBody value={word} onClick={(e)=>handleClick(e)}>
+				<CardBody value={word} onClick={(e)=>handleClick(e)} >
 					<CardText value={word}>{word}</CardText>
 				</CardBody>
 			</Card>
