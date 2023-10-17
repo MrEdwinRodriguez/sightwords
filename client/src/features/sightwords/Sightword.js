@@ -1,5 +1,5 @@
-import React, {useEffect} from 'react';
-import { Card, CardText, CardBody, Button, Col } from 'reactstrap';
+import React from 'react';
+import { Card, CardText, CardBody} from 'reactstrap';
 
 const Sightword = ({word, compare}) => {
 	const handleClick = (e) => {

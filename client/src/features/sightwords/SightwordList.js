@@ -4,12 +4,13 @@ import Sightword from './Sightword';
 import AnimatedWord from './AnimatedWord';
 import DropdownComponent from '../../components/DropdownComponent';
 import { getEncourangmentPhrase } from '../../helpers/encourage';
+import { sightwordHint } from '../../helpers/hint';
 import { getAllSightWords, selectSighwordListsById, getAllUnits } from './sightwordSlice'
 
 const SightwordList = () => {
 	const [showMic, toggleMic] = useState(true);
 	const [currentWord, updateCurrentWord] = useState(null);
-	const [unit, updateUnit] = useState(null);
+	const [unit, updateUnit] = useState('Choose Unit');
 	const [wordsFullArray, updateWordFullsArray] = useState([]);
 	const [score, updateScore] = useState(0);
 
@@ -42,7 +43,8 @@ const SightwordList = () => {
 			updateCurrentWord(null)
 		} else {
 			if (score > 0) updateScore(score - 1);
-			const utter = new window.SpeechSynthesisUtterance("Try Again");
+			const hint = sightwordHint(currentWord);
+			const utter = new window.SpeechSynthesisUtterance(hint);
 			window.speechSynthesis.speak(utter);
 		}
 	};
@@ -57,7 +59,7 @@ const SightwordList = () => {
 	return (
 		<Container className="margin-top-20">
 			<DropdownComponent title="Choose Unit" options={allUnits} callback={handleDropDown}/>
-			{unit && <h1>Unit {unit}</h1>}
+			{unit && unit !== "Choose Unit" && <h1>Unit {unit}</h1>}
 			<h3>Score</h3>
 			<div>{score}</div>
 			{showMic ? <Button onClick={onRead} className="margin-top-20"><i className="fa fa-microphone" aria-hidden="true"></i> New Word</Button> : ""}
