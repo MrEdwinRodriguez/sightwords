@@ -9,42 +9,58 @@ import { getAllSightWords, selectSighwordListsById, getAllUnits } from './sightw
 
 const SightwordList = () => {
 	const [showMic, toggleMic] = useState(true);
+	const [showRepeat, toggleRepeat] = useState(false);
 	const [currentWord, updateCurrentWord] = useState(null);
 	const [unit, updateUnit] = useState('Choose Unit');
 	const [wordsFullArray, updateWordFullsArray] = useState([]);
 	const [score, updateScore] = useState(0);
 
 	const allUnits = getAllUnits();
-	// let wordsFullArray = null;
 	let words = useRef([]);
-	// let words = useRef([...selectSighwordListsById(id).words]);
-	console.log(words)
-	console.log(wordsFullArray)
-	// const wordsFullArray = getAllSightWords();
-	// const words = useRef(getAllSightWords());
-
+	let utter = new window.SpeechSynthesisUtterance("");
+	utter.voice = speechSynthesis.getVoices().filter(function(voice){ return voice.name == 'Daniel (English (United Kingdom))'; })[0];
 	const onRead = () => {
 		const randomNumber = Math.floor(Math.random() * words.current.length);
 		const toSay = words.current.splice(randomNumber, 1);
 		updateCurrentWord(toSay[0])
-		if (words.current.length === 0) toggleMic(false);
-		const utter = new window.SpeechSynthesisUtterance(toSay[0]);
+		if (words.current.length === 0) {
+			toggleMic(false);
+			toggleRepeat(false);
+		} else {
+			toggleMic(false);
+			toggleRepeat(true);
+		};
+		utter.text = toSay[0];
+		utter.voice = speechSynthesis.getVoices().filter(function(voice){ return voice.name == 'Daniel (English (United Kingdom))'; })[0];
+		window.speechSynthesis.speak(utter); 
+	};
+
+	const onRepeat = () => {
+		utter.text = currentWord;
+		utter.voice = speechSynthesis.getVoices().filter(function(voice){ return voice.name == 'Daniel (English (United Kingdom))'; })[0];
 		window.speechSynthesis.speak(utter); 
 	};
 
 	const compare = (selection) => {
 		if (!currentWord) {
-			const utter = new window.SpeechSynthesisUtterance("Select a new word");
+			utter.text = "Select a new word";
 			window.speechSynthesis.speak(utter); 
 		} else if (selection === currentWord) {
 			updateScore(score + 1);
-			const utter = new window.SpeechSynthesisUtterance(getEncourangmentPhrase());
+			utter.text = getEncourangmentPhrase();
 			window.speechSynthesis.speak(utter);
 			updateCurrentWord(null)
+			if (words.current.length === 0) {
+				toggleMic(false);
+				toggleRepeat(false);
+			} else {
+				toggleMic(true);
+				toggleRepeat(false);
+			};
 		} else {
 			if (score > 0) updateScore(score - 1);
 			const hint = sightwordHint(currentWord);
-			const utter = new window.SpeechSynthesisUtterance(hint);
+			utter.text = hint
 			window.speechSynthesis.speak(utter);
 		}
 	};
@@ -63,6 +79,7 @@ const SightwordList = () => {
 			<h3>Score</h3>
 			<div>{score}</div>
 			{showMic ? <Button onClick={onRead} className="margin-top-20"><i className="fa fa-microphone" aria-hidden="true"></i> New Word</Button> : ""}
+			{showRepeat ? <Button onClick={onRepeat} className="margin-top-20"><i className="fa fa-repeat" aria-hidden="true"></i> Repeat</Button> : ""}
 			<Row className="margin-top-20">
 				{wordsFullArray && wordsFullArray.map((word, idx) => {
 					return (
