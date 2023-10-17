@@ -9,6 +9,10 @@ export const getAllSightWords = () => {
 	return allSightWords;
 }
 
+export const getAllUnits = () => {
+	return SIGHTWORDS;
+}
+
 export const selectSighwordListsById = (id) => {
 	return SIGHTWORDS.find((list) => list._id === parseInt(id));
 }

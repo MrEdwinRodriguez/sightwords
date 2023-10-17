@@ -7,7 +7,7 @@ import ListGroupItemDisplay from './ListGroupItemDisplay';
 
 const Homepage = () => {
   return (
-	<Container className="col-lg-4 col-md-6 col-xs-12" style={{ "margin-top": "100px"}}>
+	<Container className="col-lg-4 col-md-6 col-xs-12" style={{ "margin-top": "40px"}}>
 		<h1>Home Page</h1>
 	<ListGroup>
 		<ListGroupItemDisplay className="home-page" text={"Letters"} link={""}/>
