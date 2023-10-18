@@ -53,3 +53,14 @@
 .margin-bot-20 {
 	margin-bottom: 20px;
 }
+
+/* class that contains 'confetti-explosion-container' */
+div[class^="confetti-explosion-container"] {
+	left: 50%;
+	position: absolute;
+	top: 250px;
+}
+
+.fr {
+	float: right
+}
