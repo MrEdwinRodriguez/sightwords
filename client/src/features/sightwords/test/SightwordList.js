@@ -2,9 +2,9 @@ import React, {useRef, useEffect, useState} from 'react';
 import {Container, Col, Row, Button, Alert} from 'reactstrap';
 import Sightword from './Sightword';
 import AnimatedWord from './AnimatedWord';
-import DropdownComponent from '../../components/DropdownComponent';
-import { getEncourangmentPhrase } from '../../helpers/encourage';
-import { sightwordHint } from '../../helpers/hint';
+import DropdownComponent from '../../../components/DropdownComponent';
+import { getEncourangmentPhrase } from '../../../helpers/encourage';
+import { sightwordHint } from '../../../helpers/hint';
 import ConfettiExplosion from 'react-confetti-explosion';
 import { getAllSightWords, selectSighwordListsById, getAllUnits } from './sightwordSlice'
 

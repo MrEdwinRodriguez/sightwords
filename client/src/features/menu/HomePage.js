@@ -11,7 +11,8 @@ const Homepage = () => {
 		<h1>Home Page</h1>
 	<ListGroup>
 		<ListGroupItemDisplay className="home-page" text={"Letters"} link={""}/>
-		<ListGroupItemDisplay className="home-page" text={"Sightwords - Selecting"} link={"sightwords"}/>
+		<ListGroupItemDisplay className="home-page" text={"Sightwords - Practice"} link={"sightwords/practice"}/>
+		<ListGroupItemDisplay className="home-page" text={"Sightwords - Test"} link={"sightwords"}/>
 		<ListGroupItemDisplay className="home-page" text={"Sightwords - Spelling"} link={""}/>
 		<ListGroupItemDisplay className="home-page" text={"TBD"} link={""}/>
 	</ListGroup>

@@ -1,4 +1,4 @@
-import { SIGHTWORDS } from '../../app/shared/SIGHTWORDS';
+import { SIGHTWORDS } from '../../../app/shared/SIGHTWORDS';
 
 
 export const getAllSightWords = () => {

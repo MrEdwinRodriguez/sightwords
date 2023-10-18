@@ -3,7 +3,8 @@ import logo from './logo.svg';
 import { Counter } from './features/counter/Counter';
 import './App.css';
 import { Routes, Route} from 'react-router-dom';
-import SightwordList from './features/sightwords/SightwordList';
+import SightwordList from './features/sightwords/test/SightwordList';
+import SightWordPractice from './features/sightwords/practice/SightWordPractice'
 import HomePage from './features/menu/HomePage';
 import Header from './components/Header';
 
@@ -14,6 +15,7 @@ function App() {
             <Routes>
                 <Route path='/' element={<HomePage />} />
                 <Route path='/sightwords' element={<SightwordList />} />
+                <Route path='/sightwords/practice' element={<SightWordPractice />} />
             </Routes>
         </div>
     );
