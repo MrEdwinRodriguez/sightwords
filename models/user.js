@@ -3,9 +3,8 @@ const Schema = mongoose.Schema;
 const passportLocalMongoose = require('passport-local-mongoose');
 
 let UserSchema = new Schema({
-    first_name: { type: String, required: true },
-    last_name: { type: String, required: true }, //, required: true
-    // country: { type: Number, ref: 'Country' },
+    name: { type: String, required: true },
+    username: { type: String, required: true }, //, required: true
     status: {type: String, enum: ['Inactive', 'Active'], default: "Active"},
     is_admin: { type: Boolean, default: false },
     reset_password_token: String,
