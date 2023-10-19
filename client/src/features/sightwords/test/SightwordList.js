@@ -6,7 +6,7 @@ import DropdownComponent from '../../../components/DropdownComponent';
 import { getEncourangmentPhrase } from '../../../helpers/encourage';
 import { sightwordHint } from '../../../helpers/hint';
 import ConfettiExplosion from 'react-confetti-explosion';
-import { getAllSightWords, selectSighwordListsById, getAllUnits } from './sightwordSlice'
+import { getAllSightWords, selectSighwordListsById, getAllUnits } from '../sightwordSlice';
 
 const SightwordList = () => {
 	const [showMic, toggleMic] = useState(false);
