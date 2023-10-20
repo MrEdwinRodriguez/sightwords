@@ -4,7 +4,8 @@ import { Counter } from './features/counter/Counter';
 import './App.css';
 import { Routes, Route} from 'react-router-dom';
 import SightwordList from './features/sightwords/test/SightwordList';
-import SightWordPractice from './features/sightwords/practice/SightWordPractice'
+import SightWordPractice from './features/sightwords/practice/SightWordPractice';
+import MatchingGame from './features/alphabet/matching/MatchingGame'
 import HomePage from './features/menu/HomePage';
 import Header from './components/Header';
 
@@ -14,6 +15,7 @@ function App() {
 			<Header/>
             <Routes>
                 <Route path='/' element={<HomePage />} />
+                <Route path='/alphabet' element={<MatchingGame />} />
                 <Route path='/sightwords' element={<SightwordList />} />
                 <Route path='/sightwords/practice' element={<SightWordPractice />} />
             </Routes>

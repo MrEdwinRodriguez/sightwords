@@ -10,7 +10,7 @@ const Homepage = () => {
 	<Container className="col-lg-4 col-md-6 col-xs-12" style={{ "margin-top": "40px"}}>
 		<h1>Home Page</h1>
 	<ListGroup>
-		<ListGroupItemDisplay className="home-page" text={"Letters"} link={""}/>
+		<ListGroupItemDisplay className="home-page" text={"Letters"} link={"alphabet"}/>
 		<ListGroupItemDisplay className="home-page" text={"Sightwords - Practice"} link={"sightwords/practice"}/>
 		<ListGroupItemDisplay className="home-page" text={"Sightwords - Test"} link={"sightwords"}/>
 		<ListGroupItemDisplay className="home-page" text={"Sightwords - Spelling"} link={""}/>
