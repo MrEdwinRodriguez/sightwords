@@ -3,7 +3,7 @@ const Schema = mongoose.Schema;
 
 const SightwordSchema = new Schema({
 	unit: Number,
-	querter: Number,
+	quarter: Number,
 	words: Array,
 	is_system_defined_list: {type: String, default: true}
   }, {
