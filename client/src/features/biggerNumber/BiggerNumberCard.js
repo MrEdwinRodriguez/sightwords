@@ -6,7 +6,8 @@ import wrong from '../../app/assets/audio/wrong.wav';
 
 const BiggerNumberCard = ({number}) => {
 	const [toggle, setToggle] = useState(false);
-	const audio = new Audio(wrong);
+	const audioCorrect = new Audio(correct);
+	const audioWrong = new Audio(wrong);
 
 
 	const handleMouseEnter = (e) => {
@@ -17,7 +18,7 @@ const BiggerNumberCard = ({number}) => {
 	};
 
 	const handleClick = () =>{
-		audio.play()
+		audioCorrect.play()
 		console.log('handle click')
 	}
 

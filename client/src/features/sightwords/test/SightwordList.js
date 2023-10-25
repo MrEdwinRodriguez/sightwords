@@ -7,6 +7,8 @@ import { getEncourangmentPhrase } from '../../../helpers/encourage';
 import { sightwordHint } from '../../../helpers/hint';
 import ConfettiExplosion from 'react-confetti-explosion';
 import { getAllSightWords, selectSighwordListsById, getAllUnits } from '../sightwordSlice';
+import correct from '../../../app/assets/audio/correct.wav';
+import wrong from '../../../app/assets/audio/wrong.wav';
 
 const SightwordList = () => {
 	const [showMic, toggleMic] = useState(false);
@@ -19,6 +21,8 @@ const SightwordList = () => {
 	const [alert, toggleAlert] = useState(false);
 	const [alertText, updateAlertText] = useState("");
 	const [scorePercentage, updateScorePercentage] = useState(0);
+	const audioCorrect = new Audio(correct);
+	const audioWrong = new Audio(wrong);
 
 	const allUnits = getAllUnits();
 	let words = useRef([]);
@@ -52,8 +56,7 @@ const SightwordList = () => {
 			window.speechSynthesis.speak(utter); 
 		} else if (selection === currentWord) {
 			updateScore(score + 1);
-			utter.text = getEncourangmentPhrase();
-			window.speechSynthesis.speak(utter);
+			audioCorrect.play();
 			updateCurrentWord(null)
 			if (words.current.length === 0) {
 				updateScorePercentage((score+1)/wordsFullArray.length);
@@ -74,9 +77,13 @@ const SightwordList = () => {
 			};
 		} else {
 			if (score > 0) updateScore(score - 1);
-			const hint = sightwordHint(currentWord);
-			utter.text = hint
-			window.speechSynthesis.speak(utter);
+			audioWrong.play();
+			setTimeout(()=> {
+				const hint = sightwordHint(currentWord);
+				utter.text = hint
+				window.speechSynthesis.speak(utter);
+			}, 800)
+			
 		}
 	};
 
