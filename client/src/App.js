@@ -7,6 +7,7 @@ import SightwordList from './features/sightwords/test/SightwordList';
 import SightWordPractice from './features/sightwords/practice/SightWordPractice';
 import MatchingGame from './features/alphabet/matching/MatchingGame';
 import BiggerNumberGame from './features/biggerNumber/BiggerNumberGame';
+import AddingGame from './features/math/adding/AddingGame';
 import HomePage from './features/menu/HomePage';
 import Header from './components/Header';
 
@@ -19,6 +20,7 @@ function App() {
                 <Route path='/alphabet' element={<MatchingGame />} />
                 <Route path='/biggernumbergame' element={<BiggerNumberGame />} />
                 <Route path='/sightwords' element={<SightwordList />} />
+                <Route path='/addinggame' element={<AddingGame />} />
                 <Route path='/sightwords/practice' element={<SightWordPractice />} />
             </Routes>
         </div>
