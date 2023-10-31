@@ -45,7 +45,7 @@ sightWordRouter.route('/:sighwordId')
 		next(error);
 	};
 })
-.post((req, res) => {
+.post(async (req, res) => {
     try {
 		const sightword = await SightWord.findById(req.params.sighwordId).exec();
 		if (!sightword) throw new Error('sightword list not found');
