@@ -2,9 +2,8 @@ import React, {useState, useEffect} from 'react'
 import { Container, Row, Col, Button} from 'reactstrap'
 import DropdownComponent from '../../components/DropdownComponent';
 import BiggerNumberCard from './BiggerNumberCard';
-import correct from '../../app/assets/audio/correct.wav';
-import wrong from '../../app/assets/audio/wrong.wav';
-
+import { audioCorrect, audioWrong } from '../../helpers/audio';
+import { getRandomNumberInRange} from '../../helpers/utils';
 
 const BiggerNumberGame = () => {
 	const [unit, updateUnit] = useState(null);
@@ -12,13 +11,12 @@ const BiggerNumberGame = () => {
 	const [secondNumber, updateSecondNumber] = useState(null);
 	const [numberRange, updateNumberRange] = useState(null); //object with values max and min
 	const units = [{_id: 1, unit: 1, max: 10, min: 1}, {_id: 2, unit: 2, max: 20,  min: 10}, {_id: 3, unit: 3, max: 100, min: 1},  {_id: 4, unit: 4, max: 1000, min: 1}];
-	const audioCorrect = new Audio(correct);
-	const audioWrong = new Audio(wrong);
+
 	useEffect(() => {
 		const unitSelected = units.find(unitObj => unitObj._id === unit);
 		if (unitSelected) {
-			updateFirstNumber(Math.floor(Math.random() * (unitSelected.max - unitSelected.min + 1) + unitSelected.min));
-			updateSecondNumber(Math.floor(Math.random() * (unitSelected.max - unitSelected.min + 1) + unitSelected.min));
+			updateFirstNumber(getRandomNumberInRange(unitSelected.max), unitSelected.min)
+			updateSecondNumber(getRandomNumberInRange(unitSelected.max), unitSelected.min)
 		};
 	}, [unit]);
 	
@@ -32,8 +30,8 @@ const BiggerNumberGame = () => {
 		else audioWrong.play();
 		setTimeout(()=>{
 			const unitSelected = units.find(unitObj => unitObj._id === unit);
-			updateFirstNumber(Math.floor(Math.random() * (unitSelected.max - unitSelected.min + 1) + unitSelected.min));
-			updateSecondNumber(Math.floor(Math.random() * (unitSelected.max - unitSelected.min + 1) + unitSelected.min));
+			updateFirstNumber(getRandomNumberInRange(unitSelected.max), unitSelected.min)
+			updateSecondNumber(getRandomNumberInRange(unitSelected.max), unitSelected.min)
 		}, 500)
 	};
 
