@@ -1,18 +1,28 @@
-import React, {Fragment} from 'react';
+import React, {Fragment, useEffect, useState } from 'react';
 import {Col, Row, Button, Input} from 'reactstrap';
 import Item from './Item';
-import { audioCorrect, audioWrong } from '../../../helpers/audio'
+import { audioCorrect, audioWrong } from '../../../helpers/audio';
+import { getRandomNumber, getRandomNumberInRange } from '../../../helpers/utils';
 
 const AddingGame = () => {
+	const [numOne, updateNumOne] = useState(null);
+	const [numTwo, updateNumTwo] = useState(null);
 
-	const numOne = 8;
-	const numTwo = 3;
 
 	const firstArray = new Array(numOne).fill('tree');
 	const secondArray = new Array(numTwo).fill(null);
 
+	useEffect(()=>{
+		updateNumOne(getRandomNumber(10));
+		updateNumTwo(getRandomNumber(10));
+	}, [])
+
 	const checkAnswer = (e) => {
-		console.log(e.target.value)
+		if (numOne + numTwo == e.target.value) {
+			audioCorrect.play();
+		} else {
+			audioWrong.play()
+		}
 	};
 
   	return (
