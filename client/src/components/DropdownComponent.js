@@ -7,19 +7,20 @@ const DropdownComponent = ({title, options, direction="down", callback}) => {
 	const handleClick = (e) => {
 		callback(e.target.value);
 	};
-
+	console.log('line 10', options)
 	return (
 		<span className="d-flex">
-			<Dropdown isOpen={dropdownOpen} toggle={toggle} direction={direction}>
+
+			{ options && <Dropdown isOpen={dropdownOpen} toggle={toggle} direction={direction}>
 				<DropdownToggle caret>{title}</DropdownToggle>
 				<DropdownMenu >
-					{options.map((option) => {
+					{options && options.map((option) => {
 						return (
 							<DropdownItem value={option._id} onClick={handleClick}>Unit {option.unit}</DropdownItem>
 						);
 					})}
 				</DropdownMenu>
-			</Dropdown>
+			</Dropdown>}
 		</span>
   )
 }

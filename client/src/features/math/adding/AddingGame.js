@@ -7,7 +7,7 @@ import { getRandomNumber, getRandomNumberInRange } from '../../../helpers/utils'
 const AddingGame = () => {
 	const [numOne, updateNumOne] = useState(null);
 	const [numTwo, updateNumTwo] = useState(null);
-
+	const [answer, updateAnswer] = useState(null);
 
 	const firstArray = new Array(numOne).fill('tree');
 	const secondArray = new Array(numTwo).fill(null);
@@ -20,6 +20,9 @@ const AddingGame = () => {
 	const checkAnswer = (e) => {
 		if (numOne + numTwo == e.target.value) {
 			audioCorrect.play();
+			updateAnswer(null)
+			updateNumOne(getRandomNumber(10));
+			updateNumTwo(getRandomNumber(10));
 		} else {
 			audioWrong.play()
 		}
@@ -41,7 +44,7 @@ const AddingGame = () => {
 					if (event.key === 'Enter') {
 						checkAnswer(event);
 					}
-				}}/></Col>
+				}} value={answer}/></Col>
 				<Col md='2'></Col>		
 			</Row>
 		</Fragment>
